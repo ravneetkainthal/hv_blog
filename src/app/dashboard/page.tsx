@@ -45,28 +45,43 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
-      <SearchBar onSearch={handleSearch} />
-      {error && <p className="error">{error}</p>}
-      {blogs.length > 0 ? (
-        <div className="blog-list">
-          {blogs.map((blog) => (
-            <BlogCard key={blog._id} {...blog} />
-          ))}
+    <div className="dashboard-container">
+      <div className="dashboard">
+        <h1>Dashboard</h1>
+        <div className="searchbar-container">
+          <SearchBar onSearch={handleSearch} />
         </div>
-      ) : (
-        <p>No blogs available</p>
-      )}
+        {error && <p className="error">{error}</p>}
+        {blogs.length > 0 ? (
+          <div className="blog-list">
+            {blogs.map((blog) => (
+              <BlogCard key={blog._id} {...blog} />
+            ))}
+          </div>
+        ) : (
+          <p>No blogs available</p>
+        )}
+      </div>
       <style jsx>{`
+        .dashboard-container {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
         .dashboard {
           padding: 2rem;
           background-color: #f0f0f0;
+          flex: 1;
         }
         .dashboard h1 {
           text-align: center;
           margin-bottom: 2rem;
           color: #333;
+        }
+        .searchbar-container {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 2rem;
         }
         .error {
           color: red;
@@ -79,6 +94,11 @@ const Dashboard: React.FC = () => {
           gap: 2rem;
           padding: 1rem;
         }
+        footer {
+          background-color: #f0f0f0;
+          text-align: center;
+          padding: 1rem 0;
+        }
         @media (max-width: 600px) {
           .blog-list {
             grid-template-columns: 1fr;
@@ -90,5 +110,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-
-

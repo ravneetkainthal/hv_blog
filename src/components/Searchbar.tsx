@@ -28,7 +28,7 @@ const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
           align-items: center;
         }
         .search-input {
-          max-width: 200px;
+          max-width: 500px;
           border-radius: 20px;
           padding: 0.5rem;
           background-color: lavender;
