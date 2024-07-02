@@ -33,18 +33,3 @@ export async function POST(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  await dbConnect();
-
-  const { search } = req.query;
-  const searchQuery = search ? { title: { $regex: search, $options: 'i' } } : {};
-
-  try {
-    const blogs = await Blog.find(searchQuery).lean();
-    res.status(200).json(blogs);
-  } catch (error) {
-    console.error('Error fetching blogs:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-}
